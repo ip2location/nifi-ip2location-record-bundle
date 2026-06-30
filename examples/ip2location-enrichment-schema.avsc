@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "name": "Ip2LocationEnrichment",
+  "fields": [
+    {"name": "status", "type": ["null", "string"], "default": null},
+    {"name": "country_short", "type": ["null", "string"], "default": null},
+    {"name": "country_long", "type": ["null", "string"], "default": null},
+    {"name": "region", "type": ["null", "string"], "default": null},
+    {"name": "city", "type": ["null", "string"], "default": null},
+    {"name": "latitude", "type": ["null", "double"], "default": null},
+    {"name": "longitude", "type": ["null", "double"], "default": null},
+    {"name": "zipcode", "type": ["null", "string"], "default": null},
+    {"name": "timezone", "type": ["null", "string"], "default": null},
+    {"name": "isp", "type": ["null", "string"], "default": null},
+    {"name": "asn", "type": ["null", "string"], "default": null},
+    {"name": "as", "type": ["null", "string"], "default": null},
+    {"name": "usagetype", "type": ["null", "string"], "default": null},
+    {"name": "district", "type": ["null", "string"], "default": null}
+  ]
+}

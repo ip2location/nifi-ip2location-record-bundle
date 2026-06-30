@@ -1,0 +1,32 @@
+# Maven build output
+target/
+
+# NiFi / Java build artifacts
+*.nar
+*.jar
+*.class
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse / STS
+.classpath
+.project
+.settings/
+
+# VS Code, optional
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment / local config
+.env
+*.local

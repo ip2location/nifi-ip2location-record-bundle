@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ip2location.nifi</groupId>
+    <artifactId>nifi-ip2location-record-bundle</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>NiFi IP2Location Record Bundle</name>
+    <description>Apache NiFi NAR with an IP2Location BIN database Controller Service and record enrichment processor.</description>
+    <url>https://www.ip2location.com/</url>
+
+    <modules>
+        <module>nifi-ip2location-api</module>
+        <module>nifi-ip2location-service</module>
+        <module>nifi-ip2location-processors</module>
+        <module>nifi-ip2location-nar</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>21</maven.compiler.release>
+
+        <!-- Align this with the target Apache NiFi runtime version. -->
+        <nifi.version>2.9.0</nifi.version>
+        <ip2location.version>8.13.0</ip2location.version>
+
+        <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
+        <nifi.nar.maven.plugin.version>2.3.0</nifi.nar.maven.plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.nifi</groupId>
+                <artifactId>nifi-api</artifactId>
+                <version>${nifi.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.nifi</groupId>
+                <artifactId>nifi-record</artifactId>
+                <version>${nifi.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.nifi</groupId>
+                <artifactId>nifi-record-serialization-service-api</artifactId>
+                <version>${nifi.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.ip2location</groupId>
+                <artifactId>ip2location-java</artifactId>
+                <version>${ip2location.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin.version}</version>
+                    <configuration>
+                        <release>${maven.compiler.release}</release>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.nifi</groupId>
+                    <artifactId>nifi-nar-maven-plugin</artifactId>
+                    <version>${nifi.nar.maven.plugin.version}</version>
+                    <extensions>true</extensions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!-- Required so Maven recognizes <packaging>nar</packaging>. -->
+            <plugin>
+                <groupId>org.apache.nifi</groupId>
+                <artifactId>nifi-nar-maven-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

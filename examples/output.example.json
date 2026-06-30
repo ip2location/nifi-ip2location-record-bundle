@@ -1,0 +1,15 @@
+{
+  "order_id": "A1001",
+  "ip": "8.8.8.8",
+  "amount": 129.90,
+  "ip2location": {
+    "status": "OK",
+    "country_short": "US",
+    "country_long": "United States of America",
+    "region": "California",
+    "city": "Mountain View",
+    "latitude": 37.40599,
+    "longitude": -122.078514,
+    "timezone": "-07:00"
+  }
+}
