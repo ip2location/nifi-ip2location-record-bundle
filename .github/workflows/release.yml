@@ -40,11 +40,20 @@ jobs:
           echo "nar_file=$NAR_FILE" >> "$GITHUB_OUTPUT"
           echo "Found NAR: $NAR_FILE"
 
-      - name: Create GitHub Release and upload NAR
+      - name: Create or update GitHub Release and upload NAR
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "${GITHUB_REF_NAME}" \
-            "${{ steps.nar.outputs.nar_file }}" \
-            --title "${GITHUB_REF_NAME}" \
-            --notes "Release ${GITHUB_REF_NAME}"
+          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            echo "Release ${GITHUB_REF_NAME} already exists. Uploading/replacing NAR asset..."
+            gh release upload "${GITHUB_REF_NAME}" \
+              "${{ steps.nar.outputs.nar_file }}" \
+              --clobber
+          else
+            echo "Creating release ${GITHUB_REF_NAME}..."
+            gh release create "${GITHUB_REF_NAME}" \
+              "${{ steps.nar.outputs.nar_file }}" \
+              --title "${GITHUB_REF_NAME}" \
+              --notes "Release ${GITHUB_REF_NAME}"
+          fi
